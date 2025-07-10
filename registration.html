@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Registration Form</title>
+<style>
+body {
+background-color: #6F9F9C;
+}
+table {
+margin: auto;
+}
+h2 {
+text-align: center;
+        }
+</style>
+<script>
+function showAlert(event) {
+event.preventDefault(); // Prevent form submission until validation
+
+            var name = document.getElementById("name").value;
+            var password = document.getElementById("password").value;
+            var email = document.getElementById("email").value;
+            var regNo = document.getElementById("regno").value;
+            var gender = document.getElementById("gender").value;
+
+            // Regular expressions
+            var nameRegex = /^[A-Za-z ]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var regNoRegex = /^\d+$/;
+
+            if (!nameRegex.test(name)) {
+                alert("Please enter a valid name (letters only).");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            if (!regNoRegex.test(regNo)) {
+                alert("Register Number must be numeric.");
+                return false;
+            }
+
+            if (gender === "select") {
+                alert("Please select a gender.");
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2><big>Registration Form</big></h2>
+    <form onsubmit="return showAlert(event)">
+        <table>
+            <tr>
+                <td><b>Name:</b></td>
+                <td><input type="text" id="name" required></td>
+            </tr>
+            <tr>
+                <td><b>Password:</b></td>
+                <td><input type="password" id="password" required></td>
+            </tr>
+            <tr>
+                <td><b>Email ID:</b></td>
+                <td><input type="text" id="email" required></td>
+            </tr>
+            <tr>
+                <td><b>Register Number:</b></td>
+                <td><input type="text" id="regno" required></td>
+            </tr>
+            <tr>
+                <td><b>Gender:</b></td>
+                <td>
+                    <select id="gender" required>
+                        <option value="select">Select here</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
